@@ -12,6 +12,7 @@ argparser.add_argument('-on', metavar = 'name', dest = 'on', type = str, require
 argparser.add_argument('-cat', metavar = 'name', dest = 'cat', type = str, required = True, help = 'Column to be Categorized.')
 argparser.add_argument('-s', metavar = 'name', dest = 'sep', type = float, required = True, nargs='+', help = 'delimiters')
 argparser.add_argument('-l', metavar = 'name', dest = 'low_include', type = bool, required = True, help = 'delimiters')
+argparser.add_argument('-o', metavar = 'name', dest = 'out', type = str, required = True, help = 'Outfile base name.')
 
 def addlabels(fig,x,y):
     for j in range(len(x)):
@@ -27,8 +28,9 @@ if __name__ == '__main__':
     sums.append((a[0]==a[0].categories[i]).sum())
     labels.append(a[0].categories[i])
   fig, ax1 = plt.subplots(figsize=(15, 15))
-  ax.boxplot(sums,labels=labels)
-  addlabels(ax,sums,sums)
+  ax1.boxplot(sums,labels=labels)
+  addlabels(ax1,sums,sums)
+  fig.savefig(args.out + '.png', dpi=300)
   
 
 
