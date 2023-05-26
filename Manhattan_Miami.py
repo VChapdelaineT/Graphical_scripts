@@ -29,13 +29,10 @@ def manhattan(Fig, file,inverted,title):
 	df.chromosome = df.chromosome.cat.set_categories([ i for i in set(df.chromosome)], ordered=True)
 	df = df.sort_values('chromosome')
 	maxi=0
-	print(df)
 	for  i in df.chromosome.unique() :
 		df.loc[df.chromosome==i,'GENPOS']=df.loc[df.chromosome==i,'GENPOS'] + maxi
 		maxi=df.loc[df.chromosome==i,'GENPOS'].max()
 	df['ind'] = df['GENPOS']
-	print('#######')
-	print(df)
 	df_grouped = df.groupby('chromosome')
 	ax = Fig
 	colors = ['black','gray']
